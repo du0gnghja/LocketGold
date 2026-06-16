@@ -57,7 +57,7 @@ def increment_usage(user_id):
     conn.commit()
     conn.close()
 
-def check_can_request(user_id, max_limit=5):
+def check_can_request(user_id, max_limit=9999999):
     current = get_user_usage(user_id)
     return current < max_limit
 

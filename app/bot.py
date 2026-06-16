@@ -7,6 +7,7 @@ from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, Cal
 from app.config import *
 from app import database as db
 from app.services import locket, nextdns
+from app.keep_alive import start_keep_alive
 
 logger = logging.getLogger(__name__)
 
@@ -542,6 +543,9 @@ def run_bot():
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_text))
     
     async def post_init(application):
+        # Start keep-alive HTTP server (prevents Render free tier from sleeping)
+        await start_keep_alive()
+        
         # Dynamically create workers based on config
         for i in range(1, NUM_WORKERS + 1):
             asyncio.create_task(queue_worker(application, i))
