@@ -1,6 +1,6 @@
 import os
 
-BOT_TOKEN = os.environ.get("BOT_TOKEN", "8731991045:AAFG0-m-vzXevEU_xdociip4rgGu4FtmH6Q")
+BOT_TOKEN = os.environ.get("BOT_TOKEN", "8899078130:AAFqmavpdjnKdsEXcED-yVcARaKjddNQIlk")
 NEXTDNS_KEY = os.environ.get("NEXTDNS_KEY", "db426f41057b183a69e87d37a9801fefc46d8654")
 
 TOKEN_SETS = [
