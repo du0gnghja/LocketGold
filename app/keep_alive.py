@@ -65,19 +65,13 @@ async def self_ping_loop():
 
 async def start_keep_alive():
     """
-    Starts the HTTP server and self-ping loop.
-    Call this from your bot's post_init hook.
+    Trên Railway không cần mở Web Server riêng và không lo bị ngủ (Sleep).
+    Chúng ta chỉ in log thông báo để tránh lỗi chiếm dụng PORT.
     """
-    # --- HTTP Server ---
-    app = web.Application()
-    app.router.add_get("/", home_handler)
-    app.router.add_get("/health", health_handler)
-
-    runner = web.AppRunner(app)
-    await runner.setup()
-    site = web.TCPSite(runner, "0.0.0.0", PORT)
-    await site.start()
-    logger.info(f"🌐 Keep-alive HTTP server started on port {PORT}")
-
-    # --- Self-Ping Loop ---
-    asyncio.create_task(self_ping_loop())
+    logger.info("🚀 Đang chạy trên Railway: Bỏ qua khởi tạo web server độc lập để tránh trùng PORT.")
+    
+    # Nếu bạn vẫn muốn giữ vòng lặp tự ping (thực ra không cần thiết trên Railway)
+    # asyncio.create_task(self_ping_loop()) 
+    
+    # Hoặc đơn giản là không làm gì cả (pass)
+    pass
